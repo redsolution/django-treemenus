@@ -9,6 +9,6 @@ class MenuAdminForm(forms.ModelForm):
         model = Menu
         fields = '__all__'
         widgets = {
-            'name': forms.Select(choices=[(key, name) for key, name in NAMES.iteritems()])
+            'name': forms.Select(choices=[(key, name) for key, name in NAMES.items()])
         }
 

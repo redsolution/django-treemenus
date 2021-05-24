@@ -31,8 +31,8 @@ class Migration(migrations.Migration):
                 ('named_url', models.CharField(max_length=200, verbose_name='named URL', blank=True)),
                 ('level', models.IntegerField(default=0, verbose_name='level', editable=False)),
                 ('rank', models.IntegerField(default=0, verbose_name='rank', editable=False)),
-                ('menu', models.ForeignKey(related_name='contained_items', blank=True, editable=False, to='treemenus.Menu', null=True, verbose_name='menu')),
-                ('parent', models.ForeignKey(verbose_name='parent', blank=True, to='treemenus.MenuItem', null=True)),
+                ('menu', models.ForeignKey(related_name='contained_items', blank=True, editable=False,on_delete=models.deletion.CASCADE,  to='treemenus.Menu', null=True, verbose_name='menu')),
+                ('parent', models.ForeignKey(verbose_name='parent', blank=True,on_delete=models.deletion.CASCADE,  to='treemenus.MenuItem', null=True)),
             ],
             options={
             },
@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='menu',
             name='root_item',
-            field=models.ForeignKey(related_name='is_root_item_of', blank=True, editable=False, to='treemenus.MenuItem', null=True, verbose_name='root item'),
+            field=models.ForeignKey(related_name='is_root_item_of', blank=True, editable=False,on_delete=models.deletion.CASCADE,  to='treemenus.MenuItem', null=True, verbose_name='root item'),
             preserve_default=True,
         ),
     ]

@@ -29,5 +29,5 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
-    install_requires=['django==1.11.*', 'unidecode'],
+    install_requires=['django==2.2.*', 'unidecode'],
 )

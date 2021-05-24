@@ -4,15 +4,15 @@ Static multi-level menus for your Django-website.
 
 ## Requirements
 
-- Django 1.11.*
-- Python 2.7
-- Django-classy-tags >=0.3 and <=0.9.0
+- Django 2.2.*
+- Python 3.5
+- Django-classy-tags 0.9.0
 
 ## Installation and basic usage
 
 1. Install package
 
-    ``pip install git+git://github.com/oldroute/django-treemenus@1.11``
+    ``pip install git+git://github.com/oldroute/django-treemenus``
 
 2. Configure your setting file. For example we create new menu with name "header_menu":
     

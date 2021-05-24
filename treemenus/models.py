@@ -4,7 +4,7 @@ import json
 from itertools import chain
 from unidecode import unidecode
 from django.template.defaultfilters import slugify
-from django.utils.encoding import smart_unicode
+from django.utils.encoding import smart_text
 from django.utils.deconstruct import deconstructible
 from django.core.cache import cache
 from django.db import models
@@ -24,7 +24,7 @@ class SlugifyUpload(object):
     def __call__(self, instance, filename):
         filename, ext = filename.rsplit('.', 1)
         filename = re.sub(r'[_.,:;@#$%^&?*|()\[\]]', '-', filename)
-        filename = slugify(unidecode(smart_unicode(filename)))
+        filename = slugify(unidecode(smart_text(filename)))
         full_filename = '.'.join([filename, ext])
         return os.path.join(self.sub_path, full_filename)
 
@@ -36,7 +36,7 @@ class MenuItem(models.Model):
         verbose_name_plural = _('menu items')
 
 
-    parent = models.ForeignKey('self', verbose_name=_('parent'), null=True, blank=True)
+    parent = models.ForeignKey('self', verbose_name=_('parent'), null=True, blank=True, on_delete=models.CASCADE)
     show = models.BooleanField(verbose_name=_('show'), default=True)
     caption = models.CharField(_('caption'), max_length=255)
     add_caption = models.CharField(_('add caption'), null=True, blank=True, max_length=255)
@@ -44,9 +44,9 @@ class MenuItem(models.Model):
     image = models.FileField(verbose_name=_('image'), blank=True, null=True, upload_to=SlugifyUpload('upload/menu'))
     level = models.IntegerField(_('level'), default=0, editable=False)
     rank = models.IntegerField(_('rank'), default=0, editable=False)
-    menu = models.ForeignKey('Menu', related_name='contained_items', verbose_name=_('menu'), null=True, blank=True, editable=False)
+    menu = models.ForeignKey('Menu', related_name='contained_items', verbose_name=_('menu'), null=True, blank=True, editable=False, on_delete=models.CASCADE)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.caption
 
     def save(self, force_insert=False, **kwargs):
@@ -151,7 +151,7 @@ class MenuManager(models.Manager):
 class Menu(models.Model):
     name = models.CharField(_('name'), max_length=50, unique=True)
     show = models.BooleanField(verbose_name=_('show'), default=True)
-    root_item = models.ForeignKey(MenuItem, related_name='is_root_item_of', verbose_name=_('root item'), null=True, blank=True, editable=False)
+    root_item = models.ForeignKey(MenuItem, related_name='is_root_item_of', verbose_name=_('root item'), null=True, blank=True, editable=False, on_delete=models.CASCADE)
 
     objects = MenuManager()
 
@@ -193,7 +193,7 @@ class Menu(models.Model):
     def delete_cache_data(self):
         cache.delete(self.name)
 
-    def __unicode__(self):
+    def __str__(self):
         return NAMES.get(self.name)
 
     class Meta:
