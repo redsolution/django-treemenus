@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='menuitem',
             name='image',
-            field=models.ImageField(help_text='PNG, JPG, GIF only.', upload_to=b'upload/menu', verbose_name='image', blank=True),
+            field=models.ImageField(help_text='PNG, JPG, GIF only.', upload_to='upload/menu', verbose_name='image', blank=True),
             preserve_default=True,
         ),
     ]

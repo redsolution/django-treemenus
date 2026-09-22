@@ -24,6 +24,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='menuitem',
             name='image',
-            field=models.FileField(blank=True, null=True, upload_to=treemenus.models.SlugifyUpload(b'upload/menu'), verbose_name='image'),
+            field=models.FileField(blank=True, null=True, upload_to=treemenus.models.SlugifyUpload('upload/menu'), verbose_name='image'),
         ),
     ]

@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='menuitem',
             name='svg',
-            field=models.FileField(help_text='svg has higher priority over the image', upload_to=b'upload/menu', null=True, verbose_name=b'svg', blank=True),
+            field=models.FileField(help_text='svg has higher priority over the image', upload_to='upload/menu', null=True, verbose_name='svg', blank=True),
             preserve_default=True,
         ),
     ]

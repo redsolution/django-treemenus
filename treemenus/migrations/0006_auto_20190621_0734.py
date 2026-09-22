@@ -16,11 +16,11 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='menuitem',
             name='image',
-            field=models.ImageField(blank=True, help_text='PNG, JPG, GIF only.', null=True, upload_to=treemenus.models.SlugifyUpload(b'upload/menu'), verbose_name='image'),
+            field=models.ImageField(blank=True, help_text='PNG, JPG, GIF only.', null=True, upload_to=treemenus.models.SlugifyUpload('upload/menu'), verbose_name='image'),
         ),
         migrations.AlterField(
             model_name='menuitem',
             name='svg',
-            field=models.FileField(blank=True, help_text='svg has higher priority over the image', null=True, upload_to=treemenus.models.SlugifyUpload(b'upload/menu'), verbose_name=b'svg'),
+            field=models.FileField(blank=True, help_text='svg has higher priority over the image', null=True, upload_to=treemenus.models.SlugifyUpload('upload/menu'), verbose_name='svg'),
         ),
     ]
